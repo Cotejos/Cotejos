@@ -39,7 +39,7 @@
             <form role="form">
                 <div class="form-group">
                     <label for="user_email">Usuario</label>
-                    <input type="email" class="form-control" id="user_email" placeholder="Ingresa tu email">
+                    <input type="email" class="form-control" id="user_email" placeholder="Ingresa su correo electronico">
                 </div>
 
                 <div class="form-group">
