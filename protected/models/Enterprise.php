@@ -1,23 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "field".
+ * This is the model class for table "enterprise".
  *
- * The followings are the available columns in table 'field':
+ * The followings are the available columns in table 'enterprise':
  * @property integer $Id
  * @property string $name
- * @property string $location
- * @property double $price
- * @property string $type
+ * @property integer $bathroom
+ * @property integer $parking
+ * @property integer $coffee_shop
+ * @property integer $wifi
+ * @property integer $beer
+ * @property integer $shower
+ * @property string $description
  */
-class Field extends CActiveRecord
+class Enterprise extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'field';
+		return 'enterprise';
 	}
 
 	/**
@@ -28,12 +32,13 @@ class Field extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, location, price, type', 'required'),
-			array('price', 'numerical'),
-			array('name, location, type', 'length', 'max'=>50),
+			array('name, bathroom, parking, coffee_shop, wifi, beer, shower, description', 'required'),
+			array('bathroom, parking, coffee_shop, wifi, beer, shower', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>50),
+			array('description', 'length', 'max'=>250),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, name, location, price, type', 'safe', 'on'=>'search'),
+			array('Id, name, bathroom, parking, coffee_shop, wifi, beer, shower, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,9 +61,13 @@ class Field extends CActiveRecord
 		return array(
 			'Id' => 'ID',
 			'name' => 'Name',
-			'location' => 'Location',
-			'price' => 'Price',
-			'type' => 'Type',
+			'bathroom' => 'Bathroom',
+			'parking' => 'Parking',
+			'coffee_shop' => 'Coffee Shop',
+			'wifi' => 'Wifi',
+			'beer' => 'Beer',
+			'shower' => 'Shower',
+			'description' => 'Description',
 		);
 	}
 
@@ -82,9 +91,13 @@ class Field extends CActiveRecord
 
 		$criteria->compare('Id',$this->Id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('location',$this->location,true);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('type',$this->type,true);
+		$criteria->compare('bathroom',$this->bathroom);
+		$criteria->compare('parking',$this->parking);
+		$criteria->compare('coffee_shop',$this->coffee_shop);
+		$criteria->compare('wifi',$this->wifi);
+		$criteria->compare('beer',$this->beer);
+		$criteria->compare('shower',$this->shower);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +108,7 @@ class Field extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Field the static model class
+	 * @return Enterprise the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

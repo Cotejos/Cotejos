@@ -1,23 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "field".
+ * This is the model class for table "user_team".
  *
- * The followings are the available columns in table 'field':
- * @property integer $Id
- * @property string $name
- * @property string $location
- * @property double $price
- * @property string $type
+ * The followings are the available columns in table 'user_team':
+ * @property integer $user_id
+ * @property integer $team_id
+ *
+ * The followings are the available model relations:
+ * @property Team $team
+ * @property User $user
  */
-class Field extends CActiveRecord
+class UserTeam extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'field';
+		return 'user_team';
 	}
 
 	/**
@@ -28,12 +29,11 @@ class Field extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, location, price, type', 'required'),
-			array('price', 'numerical'),
-			array('name, location, type', 'length', 'max'=>50),
+			array('user_id, team_id', 'required'),
+			array('user_id, team_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, name, location, price, type', 'safe', 'on'=>'search'),
+			array('user_id, team_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,6 +45,8 @@ class Field extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'team' => array(self::HAS_ONE, 'Team', 'Id'),
+			'user' => array(self::HAS_ONE, 'User', 'Id'),
 		);
 	}
 
@@ -54,11 +56,8 @@ class Field extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'Id' => 'ID',
-			'name' => 'Name',
-			'location' => 'Location',
-			'price' => 'Price',
-			'type' => 'Type',
+			'user_id' => 'User',
+			'team_id' => 'Team',
 		);
 	}
 
@@ -80,11 +79,8 @@ class Field extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('Id',$this->Id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('location',$this->location,true);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('type',$this->type,true);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('team_id',$this->team_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +91,7 @@ class Field extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Field the static model class
+	 * @return UserTeam the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

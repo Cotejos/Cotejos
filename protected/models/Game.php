@@ -1,23 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "field".
+ * This is the model class for table "game".
  *
- * The followings are the available columns in table 'field':
+ * The followings are the available columns in table 'game':
  * @property integer $Id
- * @property string $name
- * @property string $location
- * @property double $price
- * @property string $type
  */
-class Field extends CActiveRecord
+class Game extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'field';
+		return 'game';
 	}
 
 	/**
@@ -28,12 +24,9 @@ class Field extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, location, price, type', 'required'),
-			array('price', 'numerical'),
-			array('name, location, type', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, name, location, price, type', 'safe', 'on'=>'search'),
+			array('Id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,10 +48,6 @@ class Field extends CActiveRecord
 	{
 		return array(
 			'Id' => 'ID',
-			'name' => 'Name',
-			'location' => 'Location',
-			'price' => 'Price',
-			'type' => 'Type',
 		);
 	}
 
@@ -81,10 +70,6 @@ class Field extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('Id',$this->Id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('location',$this->location,true);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('type',$this->type,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +80,7 @@ class Field extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Field the static model class
+	 * @return Game the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -1,0 +1,24 @@
+/**
+ *
+ *
+ * @author Juan Carvajal <juanesteban100@gmail.com>
+ * @link http://www.cotejos.com/
+ * @copyright 2008-2015
+ * @license http://www.cotejos.com/license/
+ *
+ *
+ */
+.full{
+	 background: url('../images/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.btn-rojo{
+	background-color: #DB0031;
+	color:white;
+	font-weight: bold;
+	width: 10em;
+}

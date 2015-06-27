@@ -1,58 +1,111 @@
-<style TYPE="text/css">
-    .redes_sociales{
-        width: 60px;
-    }
-</style> 
-<div class="row">
-    <div class="col-lg-12">
-        <header class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-contents">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="" class="navbar-brand">Cotejos</a>
-                </div>
-            </div>
-    </div>
+	<?php
+	/* @var $this SiteController */
+	/* @var $model LoginForm */
+	/* @var $form CActiveForm  */
 
-    <div class="col-lg-12">
+	Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl."/css/login.css");
 
-        <div class="col-lg-1">
+	$this->pageTitle=Yii::app()->name . ' - Login';
+	$this->breadcrumbs=array(
+		'Login',
+		);
+		?>
 
-        </div>
+		<div class="row">
 
-        <div class="col-lg-4">
-            <button type="button" class="btn btn-primary">Ingreso Manual</button><br><br>
-            <img src="<?php echo Yii::app()->theme->baseUrl . '/imagenes/Social-Network-Facebook-icon.png' ?>" alt="Facebook" class ="redes_sociales">
-            <img src="<?php echo Yii::app()->theme->baseUrl . '/imagenes/Google-plus-icon.png' ?>" class ="redes_sociales" alt="Google Plus">
-        </div>
+			<div class="col-xs-0 col-sm-0 col-md-5">
+				<div class="row">
+					<img class="displayed img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/Logo-Cotejos.png">
+				</div>
+			</div>
 
-        <div class="col-lg-2">
+			<div class="col-xs-2 col-sm-2 col-md-2">
+				<div class="row"></div>
+			</div>
 
-        </div>
+			<div class="col-xs-12 col-sm-12 col-md-5">
+			<div class="row">
+				<div class="panel panel-default login-background">
 
-        <div class="col-lg-4">
-            <form role="form">
-                <div class="form-group">
-                    <label for="user_email">Usuario</label>
-                    <input type="email" class="form-control" id="user_email" placeholder="Ingresa su correo electronico">
-                </div>
+					<h1>! Bienvenido ¡</h1>
+					<div class="">
+						<div class="">
+							<?php $form=$this->beginWidget('CActiveForm', array(
+								'id'=>'login-form',
 
-                <div class="form-group">
-                    <label for="user_password">Contraseña</label>
-                    <input type="password" class="form-control" id="user_password" placeholder="Ingresa tu contraseña">
-                </div>
-            </form>
-            <button type="button" class="btn btn-primary">Ingresar</button>
-        </div>
+								'enableClientValidation'=>true,
+								'clientOptions'=>array(
+									'validateOnSubmit'=>true,
 
-        <div class="col-lg-1">
+									),
+									)); ?>
 
-        </div>
+									<p class="note">Fields with <span class="required">*</span> are required.</p>
+										<div class="row">
+											<div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
+												<?php //echo $form->labelEx($model,'username'); ?>
+												<span class="input-group-addon glyphicon glyphicon-user" id="sizing-addon1"></span>
+												<?php echo $form->textField($model,'username',array('class'=>'form-control',"aria-describedby"=>"sizigng-addon1")); ?>
+												<?php echo $form->error($model,'username'); ?>
+											</div>
+											<br>
+										</div>
+										<div class="row">
 
-    </div>
+										<div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
+											<?php //echo $form->labelEx($model,'password'); ?>
+											<span class="input-group-addon glyphicon glyphicon-pencil" id="sizing-addon1"></span>
+											<?php echo $form->passwordField($model,'password',array('class'=>'form-control')); ?>
+											<?php echo $form->error($model,'password'); ?>
+										</div>
+										</div>
+										<br>
+									<!--
+										<p class="form-group hint">
+											Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
+										</p>
+									-->
+									
+									<!--
+									<div class="form-group rememberMe">
+										<?php echo $form->checkBox($model,'rememberMe'); ?>
+										<?php echo $form->label($model,'rememberMe'); ?>
+										<?php echo $form->error($model,'rememberMe'); ?>
+									</div>
+									-->
+
+									<div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
+										<?php echo CHtml::submitButton('Ingresa',array('class'=>'btn btn-default btn-rojo')); ?>
+									</div>
+									<br>
+<!--
+								<div
+									class="fb-like"
+									data-share="true"
+									data-width="450"
+									data-show-faces="true">
+								</div>
+-->
+							</div>
+							<?php $this->endWidget(); ?>
+
+							<?php
+							/*
+							*@autor: Juan Carvajal
+							*@descripcion: Importa el JS que contiene la logica para gestionar
+							*el login de Facebook
+							*/
+							$cs = Yii::app()->getClientScript();
+							$cs->registerCssFile(Yii::app()->request->baseUrl. "/css/full.css");
+							$loginUrl = Yii::app()->createUrl('site/login');
+							$indexUrl = Yii::app()->createUrl('site/index');
+							$cs->registerScript('registerUrl','sitesUrl = { '."loginUrl:".'"'.$loginUrl.'",'.'indexUrl:'.'"'.$indexUrl.'"'.'}');
+							$cs->registerScriptFile(Yii::app()->request->baseUrl. "/js/facebookLogin.js");
+							?>
+					<a id='fb-login' href='#' onclick='openLoginDialog()'><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/FB-login.png"></a>
+					<!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>-->
+			</div><!-- form -->
+		</div>
+	</div>
+	</div>
 </div>

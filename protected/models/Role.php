@@ -1,23 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "field".
+ * This is the model class for table "role".
  *
- * The followings are the available columns in table 'field':
+ * The followings are the available columns in table 'role':
  * @property integer $Id
- * @property string $name
- * @property string $location
- * @property double $price
- * @property string $type
+ * @property string $rol_name
+ *
+ * The followings are the available model relations:
+ * @property UserRol[] $userRols
  */
-class Field extends CActiveRecord
+class Role extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'field';
+		return 'role';
 	}
 
 	/**
@@ -28,12 +28,12 @@ class Field extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, location, price, type', 'required'),
-			array('price', 'numerical'),
-			array('name, location, type', 'length', 'max'=>50),
+			array('Id, rol_name', 'required'),
+			array('Id', 'numerical', 'integerOnly'=>true),
+			array('rol_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Id, name, location, price, type', 'safe', 'on'=>'search'),
+			array('Id, rol_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,6 +45,7 @@ class Field extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'userRols' => array(self::HAS_MANY, 'UserRol', 'rol_id'),
 		);
 	}
 
@@ -55,10 +56,7 @@ class Field extends CActiveRecord
 	{
 		return array(
 			'Id' => 'ID',
-			'name' => 'Name',
-			'location' => 'Location',
-			'price' => 'Price',
-			'type' => 'Type',
+			'rol_name' => 'Rol Name',
 		);
 	}
 
@@ -81,10 +79,7 @@ class Field extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('Id',$this->Id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('location',$this->location,true);
-		$criteria->compare('price',$this->price);
-		$criteria->compare('type',$this->type,true);
+		$criteria->compare('rol_name',$this->rol_name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +90,7 @@ class Field extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Field the static model class
+	 * @return Role the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

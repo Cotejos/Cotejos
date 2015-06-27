@@ -1,0 +1,36 @@
+/**
+ *
+ *
+ * @author Juan Carvajal <juanesteban100@gmail.com>
+ * @link http://www.cotejos.com/
+ * @copyright 2008-2015
+ * @license http://www.cotejos.com/license/
+ *
+ *
+ */
+.login-background {
+	background-color: #F0EFEE;
+	text-align: center;
+}
+
+.logo_cotejos {
+	 background: url("../images/Logo-Cotejos.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+h1{
+	color: #DA9104
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+
+.login-fields{
+	margin: 0 auto;
+}

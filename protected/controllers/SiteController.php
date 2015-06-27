@@ -21,6 +21,11 @@ class SiteController extends Controller
 		);
 	}
 
+	public function actionUnderConstruction(){
+		$this->layout = "/";
+		$this->render('construction');
+	}
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -29,12 +34,12 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-        
-            if(Yii::app()->user->isGuest){
-                $this->render('login');
-            }else{
-		$this->render('index');
-            }
+		if(Yii::app()->user->isGuest){
+			$model = new LoginForm();
+			$this->render('login',array('model'=>$model));
+		}else{
+			$this->render('index');
+		}
 	}
 
 	/**
@@ -50,31 +55,54 @@ class SiteController extends Controller
 				$this->render('error', $error);
 		}
 	}
+	/**
+	 *@autor: Mauro Soto
+	 *@descripcion: Revisa que el usuario este loguedo para entrar a la vista about
+	 *@retorna:void
+	 */
+
+	public function actionAbout()
+	{
+		if(Yii::app()->user->isGuest){
+			$model = new LoginForm();
+			$this->render('login',array('model'=>$model));
+		}else{
+			$this->render('about');
+		}
+	}
 
 	/**
-	 * Displays the contact page
+	 *@autor: Mauro Soto
+	 *@descripcion: valida si el usuario esta logueado para ingresar a la vista de contactos
+	 *@retorna:void
 	 */
 	public function actionContact()
 	{
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
+		if(Yii::app()->user->isGuest){
+			$model = new LoginForm();
+			$this->render('login',array('model'=>$model));
+		}else{
+			
+			$model=new ContactForm;
+			if(isset($_POST['ContactForm']))
 			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-type: text/plain; charset=UTF-8";
+				$model->attributes=$_POST['ContactForm'];
+				if($model->validate())
+				{
+					$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
+					$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
+					$headers="From: $name <{$model->email}>\r\n".
+						"Reply-To: {$model->email}\r\n".
+						"MIME-Version: 1.0\r\n".
+						"Content-Type: text/plain; charset=UTF-8";
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
+					mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
+					Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+					$this->refresh();
+				} 
 			}
+			$this->render('contact',array('model'=>$model));
 		}
-		$this->render('contact',array('model'=>$model));
 	}
 
 	/**
@@ -82,7 +110,25 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		//$this->layout = "//";
 		$model=new LoginForm;
+		
+		if(Yii::app()->request->isAjaxRequest){
+			$result = array('message'=>'Recibido');
+			//var_dump($_POST);
+			$model->username = $_POST['nombre'];
+			$model->password = $_POST['password'];
+			$model->rememberMe = true;
+			if($model->validate() && $model->login()){
+				//$this->render('index');
+			}
+			
+			//$this->redirect(Yii::app()->request->baseUrl);
+			echo CJSON::encode($result);
+			Yii::app()->end();
+		}
+
+
 
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
