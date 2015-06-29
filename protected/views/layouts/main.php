@@ -1,12 +1,12 @@
 <?php /* @var $this Controller */ 
-Yii::app()->getClientScript()->registerCoreScript('jquery');
+
 ?>
 <!DOCTYPE html>
 <html >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="en">
-
+    <meta name="viewport" content="width=device.width, initial-scale=1.0,maximu-scale=1.0,user-scalable=no"/>
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print">
@@ -16,7 +16,7 @@ Yii::app()->getClientScript()->registerCoreScript('jquery');
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/full.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	
+        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -39,6 +39,7 @@ Yii::app()->getClientScript()->registerCoreScript('jquery');
 				),
 			)); ?>
 		</div><!-- mainmenu -->
+                
 		<?php if(isset($this->breadcrumbs)):?>
 			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 				'links'=>$this->breadcrumbs,

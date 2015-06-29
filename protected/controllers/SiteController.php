@@ -20,6 +20,32 @@ class SiteController extends Controller
 			),
 		);
 	}
+    
+    /*
+     * @Author: Juan Carvajal <juanesteban100@gmail.com>
+     * @Description: Define filtro para que valide permisos con reglas del metodo accessRules
+     * @Return: void
+     * */
+    public function filters()
+    {
+        return array(
+            'accessControl'
+        );
+        
+    }
+    
+        /*
+     * @Author: Juan Carvajal <juanesteban100@gmail.com>
+     * @Description: Define reglas de autorizacion de las acciones
+     * @Return: void
+     * */
+    public function accessRules(){
+        return array(
+        //Permite el ingreso de login a usuarios anonimos
+        array('allow','actions'=>array('login'),'users'=>array('?')),
+        array('allow','actions'=>array('about'),'users'=>array('*')),
+        );
+    }
 
 	public function actionUnderConstruction(){
 		$this->layout = "/";
@@ -63,12 +89,15 @@ class SiteController extends Controller
 
 	public function actionAbout()
 	{
+	    $this->render('about');
+        /*
 		if(Yii::app()->user->isGuest){
 			$model = new LoginForm();
 			$this->render('login',array('model'=>$model));
 		}else{
 			$this->render('about');
 		}
+         * */
 	}
 
 	/**
@@ -110,7 +139,6 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
-		//$this->layout = "//";
 		$model=new LoginForm;
 		
 		if(Yii::app()->request->isAjaxRequest){
