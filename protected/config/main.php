@@ -1,5 +1,5 @@
 <?php
-
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -11,11 +11,18 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-
+            'aliases' => array(
+    ),
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'bootstrap.helpers.TbHtml',
+                'bootstrap.behaviors.*',
+                'bootstrap.components.*',
+                'bootstrap.form.*',
+                'bootstrap.helpers.*',
+                'bootstrap.widgets.*',
 	),
 
 	'modules'=>array(
@@ -26,12 +33,17 @@ return array(
 			'password'=>'admin',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+                        'generatorPaths' => array('bootstrap.gii'),
 		),
 		
 	),
 
 	// application components
 	'components'=>array(
+            
+                'bootstrap' => array(
+                    'class' => 'bootstrap.components.TbApi',   
+                ),
 
 		'user'=>array(
 			// enable cookie-based authentication
