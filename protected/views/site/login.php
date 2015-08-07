@@ -8,64 +8,68 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . "/css/l
 $this->pageTitle = Yii::app()->name . ' - Login';
 $this->breadcrumbs = array(
     'Login',
-);
-?>
+    );
+    ?>
 
-<div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-3"></div>
 
-    <div class="col-xs-0 col-sm-0 col-md-5">
+    <div class="col-xs-8 col-sm-8 col-md-6">
+
+
         <div class="row">
-            <img class="displayed img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/Logo-Cotejos.png">
-        </div>
-    </div>
 
-    <div class="col-xs-2 col-sm-2 col-md-2">
-        <div class="row"></div>
-    </div>
+            <div class="col-xs-0 col-sm-0 col-md-5">
+                <div class="row">
+                    <img class="displayed img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/Logo-Cotejos.png">
+                </div>
+            </div>
 
-    <div class="col-xs-12 col-sm-12 col-md-5">
-        <div class="row">
-            <div class="panel panel-default login-background">
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="row"></div>
+            </div>
 
-                <h1>! Bienvenido ¡</h1>
-                <div class="">
-                    <div class="">
-                        <?php
-                        $form = $this->beginWidget('CActiveForm', array(
-                            'id' => 'login-form',
-                            'action'=>Yii::app()->createUrl('site/login'),
-                            'enableClientValidation' => true,
-                            'clientOptions' => array(
-                                'validateOnSubmit' => true,
-                            ),
-                        ));
-                        ?>
+            <div class="col-xs-12 col-sm-12 col-md-5">
+                <div class="row">
+                    <div class="panel panel-default login-background">
+                        <h1>! Bienvenido ¡</h1>
+                        <div class="">
+                            <div class="">
+                                <?php
+                                $form = $this->beginWidget('CActiveForm', array(
+                                    'id' => 'login-form',
+                                    'action'=>Yii::app()->createUrl('site/login'),
+                                    'enableClientValidation' => true,
+                                    'clientOptions' => array(
+                                        'validateOnSubmit' => true,
+                                        ),
+                                    ));
+                                    ?>
 
-                        <p class="note">Fields with <span class="required">*</span> are required.</p>
-                        <div class="row">
-                            <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
-                                <?php //echo $form->labelEx($model,'username');  ?>
-                                <span class="input-group-addon glyphicon glyphicon-user" id="sizing-addon1"></span>
-                                <?php echo $form->textField($model, 'username', array('class' => 'form-control', "aria-describedby" => "sizigng-addon1")); ?>
-                                <?php echo $form->error($model, 'username'); ?>
-                            </div>
-                            <br>
-                        </div>
-                        <div class="row">
+                                    <p class="note">Fields with <span class="required">*</span> are required.</p>
+                                    <div class="row">
+                                        <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
+                                            <?php //echo $form->labelEx($model,'username');  ?>
+                                            <span class="input-group-addon glyphicon glyphicon-user" id="sizing-addon1"></span>
+                                            <?php echo $form->textField($model, 'username', array('class' => 'form-control', "aria-describedby" => "sizigng-addon1")); ?>
+                                            <?php echo $form->error($model, 'username'); ?>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="row">
 
-                            <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
-                                <?php //echo $form->labelEx($model,'password');  ?>
-                                <span class="input-group-addon glyphicon glyphicon-pencil" id="sizing-addon1"></span>
-                                <?php echo $form->passwordField($model, 'password', array('class' => 'form-control')); ?>
-                                <?php echo $form->error($model, 'password'); ?>
-                            </div>
-                        </div>
-                        <br>
+                                        <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
+                                            <?php //echo $form->labelEx($model,'password');  ?>
+                                            <span class="input-group-addon glyphicon glyphicon-pencil" id="sizing-addon1"></span>
+                                            <?php echo $form->passwordField($model, 'password', array('class' => 'form-control')); ?>
+                                            <?php echo $form->error($model, 'password'); ?>
+                                        </div>
+                                    </div>
+                                    <br>
                         <!--
                                 <p class="form-group hint">
                                         Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
                                 </p>
-                        -->
+                            -->
 
                         <!--
                         <div class="form-group rememberMe">
@@ -73,12 +77,12 @@ $this->breadcrumbs = array(
                         <?php echo $form->label($model, 'rememberMe'); ?>
                         <?php echo $form->error($model, 'rememberMe'); ?>
                         </div>
-                        -->
+                    -->
 
-                        <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
+                    <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
                         <?php echo CHtml::submitButton('Ingresa', array('class' => 'btn btn-default btn-rojo')); ?>
-                        </div>
-                        <br>
+                    </div>
+                    <br>
                         <!--
                                                                                         <div
                                                                                                 class="fb-like"
@@ -86,11 +90,11 @@ $this->breadcrumbs = array(
                                                                                                 data-width="450"
                                                                                                 data-show-faces="true">
                                                                                         </div>
-                        -->
-                    </div>
-                    <?php $this->endWidget(); ?>
+                                                                                    -->
+                                                                                </div>
+                                                                                <?php $this->endWidget(); ?>
 
-                    <?php
+                                                                                <?php
                     /*
                      * @autor: Juan Carvajal
                      * @descripcion: Importa el JS que contiene la logica para gestionar
@@ -110,3 +114,6 @@ $this->breadcrumbs = array(
         </div>
     </div>
 </div>
+</div>
+<div class="col-xs-2 col-sm-2 col-md-3"></div>
+<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>

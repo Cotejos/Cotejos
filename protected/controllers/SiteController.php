@@ -68,6 +68,28 @@ class SiteController extends Controller
 		}
 	}
 
+	public function actionMatch()
+	{
+		$this->render('match');
+	}
+
+
+	public function actionTeam()
+	{
+		$this->render('team');
+	}
+
+		public function actionTournament()
+	{
+		$this->render('tournament');
+	}
+
+
+	public function actionField()
+	{
+		$this->render('field');
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

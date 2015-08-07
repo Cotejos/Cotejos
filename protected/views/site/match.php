@@ -1,4 +1,3 @@
-
 <?php
 /* @var $this SiteController */
 
@@ -9,14 +8,19 @@ $this->pageTitle=Yii::app()->name;
 </div>
 <div class="col-xs-12 col-sm-12 col-md-6">
 	<div class="panel panel-default panel-transparent">
-		<div class="panel-heading">Conocenos</div>
+		<div class="panel-heading">Cotejos</div>
 		<div class="panel-body ">
-			<p>Información acerca de cotejos</p>
+
 		</div>
 	<div class="col-xs-0 col-sm-0 col-md-3"></div>
 
 
 
 	     <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-<script type="text/javascript">
-</script>
+	    <script type="text/javascript">
+    $(document).ready(function(){
+         $(".container-index").mCustomScrollbar({
+		     theme:"red"
+		});
+    });
+    </script>

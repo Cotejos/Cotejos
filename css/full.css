@@ -9,20 +9,48 @@
  *
  */
 
-.navbar{
-    height: 70px !important;
+
+
+.nav-cotejos{
+   /* height: 70px;*/
 }
 
-.brand-cotejos{
-    padding-left: 55% !important;
-    
-   
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 60px;
+    height: 60px;
+    padding-top: 0px;
+}
+
+@media (min-width: 100px) and (max-width: 400px){
+    .nav-cotejos{
+        margin-bottom: 10%;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 999px){
+    .nav-cotejos{
+        margin-bottom: 3%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .brand-cotejos{
+        padding-left: 65%;
+    }
+
+    .nav-cotejos{
+        margin-bottom: 1%;
+    }
 }
 
 .menu-cotejos{
     padding-top: 1% !important;
+    /*
     padding-left: 20% !important;
+    */
 }
+
 .full{
     background: url('../images/background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -31,9 +59,67 @@
     -o-background-size: cover;
 }
 
+
 .btn-rojo{
 	background-color: #DB0031;
 	color:white;
 	font-weight: bold;
 	width: 10em;
+    border-radius: 15px;
 }
+
+.btn-rojo:hover{
+    background-color: #DB0031;
+    color:white;
+    font-weight: bold;
+    width: 10em;
+    border-radius: 15px;
+}
+
+.panel-heading{
+    background-color:#333 ;
+    color: white;
+}
+    body {
+        background:#c33;
+    }
+
+    .panel-transparent {
+        background: none;
+    }
+    
+    .panel-transparent .panel-heading{
+        background: rgba(51, 51, 51, 1);
+        color: white;
+        font-weight: bold;
+    }
+
+    .panel-transparent .panel-body{
+        background: rgba(256, 256, 256, 0.6);
+        color: black;
+    }
+
+    .panel-heading-info{
+        background: white !important;
+        color: black !important;
+        font-weight: bold !important;
+        border-bottom-color: white !important;
+    }
+
+    .panel-footer-info{
+        background: white !important;
+        color: black !important;
+        font-weight: bold !important;
+        border-top-color: white !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center;
+    }
+
+   
+    .container-index {
+        max-height:  220px;
+        width:100%;
+        padding:0px;
+        /*border:1px solid black;*/
+    }
