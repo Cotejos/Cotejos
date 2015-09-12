@@ -44,6 +44,7 @@ class SiteController extends Controller
         //Permite el ingreso de login a usuarios anonimos
         array('allow','actions'=>array('login'),'users'=>array('?')),
         array('allow','actions'=>array('about'),'users'=>array('*')),
+        
         );
     }
 
@@ -57,6 +58,13 @@ class SiteController extends Controller
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
+	{
+		$this->layout = "/";	
+		$this->render('construction');
+	}
+
+	/**/
+	public function actionAdministrator()
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'

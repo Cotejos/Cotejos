@@ -50,7 +50,7 @@ $this->breadcrumbs = array(
                                         <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
                                             <?php //echo $form->labelEx($model,'username');  ?>
                                             <span class="input-group-addon glyphicon glyphicon-user" id="sizing-addon1"></span>
-                                            <?php echo $form->textField($model, 'username', array('class' => 'form-control', "aria-describedby" => "sizigng-addon1")); ?>
+                                            <?php echo $form->textField($model, 'username', array('class' => 'form-control', "placeholder" => "demo")); ?>
                                             <?php echo $form->error($model, 'username'); ?>
                                         </div>
                                         <br>
@@ -60,7 +60,7 @@ $this->breadcrumbs = array(
                                         <div class="form-group input-group login-fields col-xs-12 col-sm-12 col-md-9">
                                             <?php //echo $form->labelEx($model,'password');  ?>
                                             <span class="input-group-addon glyphicon glyphicon-pencil" id="sizing-addon1"></span>
-                                            <?php echo $form->passwordField($model, 'password', array('class' => 'form-control')); ?>
+                                            <?php echo $form->passwordField($model, 'password', array('class' => 'form-control', "placeholder" => "demo")); ?>
                                             <?php echo $form->error($model, 'password'); ?>
                                         </div>
                                     </div>
